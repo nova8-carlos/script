@@ -10,7 +10,7 @@ print(" \_____|_| |_|\___|\___|_|\_\_| |_| |_|\__,_|_|  /_/\_\ ")
 print("                                                        ")
 
 def CheckmarxLogin():
-    urlToken = "https://dft-sp-cxmanager.br.dafiti.io/cxrestapi/auth/identity/connect/token"
+    urlToken = cxServer + "/cxrestapi/auth/identity/connect/token"
     scope = "sast_api"
     clientId = "resource_owner_sast_client"
     payload = 'username=' + cxUser +'&password=' + cxPwd + '&grant_type=password&scope=' + scope + '&client_id=' + clientId +'&client_secret=014DF517-39D1-4453-B7B3-9930C563627C'
