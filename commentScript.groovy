@@ -1,14 +1,16 @@
-import com.checkmarx.flow.dto.ScanRequest
-import com.checkmarx.flow.utils.ScanUtils
-import groovy.json.JsonSlurper
+@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7' )
+import groovyx.net.http.HTTPBuilder
 
- 
+def repoUrl = request.getRepoUrl()
+def branch = request.getBranch()
+//def commitId = request.getHash()
+//When using SCM automated workflows, comment the line above and uncomment the 2 lines below so the hash is not null (example is for Github Actions):
 
-println("------------- Groovy script execution started --------------------")
-println("Checking sast comment")
+def env = System.getenv()
+def commitId = env['GITHUB_SHA']
 
- 
+String scanComment = "Repo: $CIRCLE_PROJECT_REPONAME | Branch: $CIRCLE_BRANCH | Commit ID: $commitId"
 
+println "INFO : Scanning code from $scanComment"
 
-String SAST_Comment = "standard comment";
-return SAST_Comment;
+return scanComment
